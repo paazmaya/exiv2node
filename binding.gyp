@@ -6,7 +6,7 @@
         'exiv2node.cc'
       ],
       'include_dirs' : [
-        '<!@(pkg-config --variable=includedir exiv2)',
+        "vendor/exiv2-0.25",
         "<!(node -e \"require('nan')\")"
       ],
       'xcode_settings': {
@@ -17,9 +17,9 @@
       'cflags_cc': [
         '-fexceptions'
       ],
-      'libraries': [
-        '<!@(pkg-config --libs exiv2)'
-      ],
+      "dependencies": [
+        "vendor/exiv2.gyp:libexiv2"
+      ]
     }
   ]
 }
