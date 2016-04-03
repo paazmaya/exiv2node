@@ -7,3 +7,8 @@ npm-debug.log
 *.swp
 .vagrant
 Vagrantfile
+
+*.o
+*.lo
+*.a
+*.la

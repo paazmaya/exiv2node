@@ -24,6 +24,9 @@
         "exiv2-0.25/xmpsdk/src/WXMPIterator.cpp",
         "exiv2-0.25/xmpsdk/src/WXMPUtils.cpp"
       ],
+      "cflags": [ 
+        "-Wdeprecated-declarations"
+      ],
       "cflags_cc": [
         "-fexceptions",
         "-funsigned-char",
@@ -99,7 +102,6 @@
       "cflags_cc": [
         "-fexceptions",
         "-frtti",
-        "-Wdeprecated-declarations",
         "-DEXV_LOCALEDIR=\"/usr/local/share/locale\""
       ],
       "libraries": [ "-Wl,-rpath,./build/Release/XMPSDK.a" ],

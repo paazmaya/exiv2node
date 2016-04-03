@@ -15,6 +15,9 @@
         'GCC_ENABLE_CPP_EXCEPTIONS': 'YES',
         'OTHER_CPLUSPLUSFLAGS': ['-stdlib=libc++','-fcxx-exceptions', '-frtti'],
       },
+      "cflags": [ 
+        "-Wdeprecated-declarations"
+      ],
       'cflags_cc': [
         '-fexceptions'
       ],
