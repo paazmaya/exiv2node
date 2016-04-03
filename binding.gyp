@@ -18,6 +18,7 @@
         '-fexceptions'
       ],
       "dependencies": [
+        "vendor/exiv2.gyp:XMPSDK",
         "vendor/exiv2.gyp:libexiv2"
       ]
     }

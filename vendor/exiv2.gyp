@@ -1,6 +1,36 @@
 {
   'targets': [
     {
+      'target_name': 'XMPSDK',
+      "type": "static_library",
+      "include_dirs": [
+        'exiv2-0.25/xmpsdk/include/'
+      ],
+      "sources": [
+        "exiv2-0.25/xmpsdk/src/XML_Node.cpp",
+        "exiv2-0.25/xmpsdk/src/XMPMeta.cpp",
+        "exiv2-0.25/xmpsdk/src/XMPMeta-GetSet.cpp",
+        "exiv2-0.25/xmpsdk/src/XMPMeta-Parse.cpp",
+        "exiv2-0.25/xmpsdk/src/XMPMeta-Serialize.cpp",
+        "exiv2-0.25/xmpsdk/src/XMPIterator.cpp",
+        "exiv2-0.25/xmpsdk/src/XMPUtils.cpp",
+        "exiv2-0.25/xmpsdk/src/XMPUtils-FileInfo.cpp",
+        "exiv2-0.25/xmpsdk/src/XMPCore_Impl.cpp",
+        "exiv2-0.25/xmpsdk/src/ExpatAdapter.cpp",
+        "exiv2-0.25/xmpsdk/src/ParseRDF.cpp",
+        "exiv2-0.25/xmpsdk/src/UnicodeConversions.cpp",
+        "exiv2-0.25/xmpsdk/src/MD5.cpp",
+        "exiv2-0.25/xmpsdk/src/WXMPMeta.cpp",
+        "exiv2-0.25/xmpsdk/src/WXMPIterator.cpp",
+        "exiv2-0.25/xmpsdk/src/WXMPUtils.cpp"
+      ],
+      "cflags_cc": [
+        "-fexceptions",
+        "-funsigned-char",
+        "-DEXV_HAVE_STDINT_H=1"
+      ]
+    },
+    {
       'target_name': 'libexiv2',
       "type": "static_library",
       "include_dirs": [
@@ -64,6 +94,13 @@
         "exiv2-0.25/src/quicktimevideo.cpp",
         "exiv2-0.25/src/riffvideo.cpp",
         "exiv2-0.25/src/utilsvideo.cpp"
+      ],
+      "cflags_cc": [
+        "-fexceptions",
+        "-frtti"
+      ],
+      "dependencies": [
+        "XMPSDK"
       ]
     }
   ]
