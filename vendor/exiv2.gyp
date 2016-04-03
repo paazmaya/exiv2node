@@ -34,6 +34,7 @@
       'target_name': 'libexiv2',
       "type": "static_library",
       "include_dirs": [
+        'exiv2-0.25/xmpsdk/include/',
         'exiv2-0.25/include/exiv2',
         'exiv2-0.25/config' 
       ],
@@ -97,8 +98,11 @@
       ],
       "cflags_cc": [
         "-fexceptions",
-        "-frtti"
+        "-frtti",
+        "-Wdeprecated-declarations",
+        "-DEXV_LOCALEDIR=\"/usr/local/share/locale\""
       ],
+      "libraries": [ "-Wl,-rpath,./build/Release/XMPSDK.a" ],
       "dependencies": [
         "XMPSDK"
       ]

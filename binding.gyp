@@ -6,9 +6,10 @@
         'exiv2node.cc'
       ],
       'include_dirs' : [
-        "vendor/exiv2-0.25",
+        "vendor/exiv2-0.25/include",
         "<!(node -e \"require('nan')\")"
       ],
+      "libraries": [ "-Wl,-rpath,./build/Release/exiv2.a" ],
       'xcode_settings': {
         'MACOSX_DEPLOYMENT_TARGET': '10.7',
         'GCC_ENABLE_CPP_EXCEPTIONS': 'YES',
