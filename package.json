@@ -25,9 +25,8 @@
   },
   "main": "exiv2",
   "scripts": {
-    "preuninstall": "rm -rf build/*",
     "test": "mocha",
-    "install": "node-gyp rebuild"
+    "build": "node-gyp configure build"
   },
   "gypfile": true,
   "contributors": [
