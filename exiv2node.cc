@@ -2,7 +2,13 @@
 #include <node.h>
 #include <node_buffer.h>
 #include <nan.h>
-#include <unistd.h>
+#ifdef _MSC_VER
+# include <direct.h>
+# include <process.h>
+#else
+# include <unistd.h>
+# include <stdint.h>
+#endif
 #include <string>
 #include <map>
 #include <exception>
