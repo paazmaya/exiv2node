@@ -24,18 +24,21 @@
         "exiv2-0.25/xmpsdk/src/WXMPIterator.cpp",
         "exiv2-0.25/xmpsdk/src/WXMPUtils.cpp"
       ],
-      "conditions": [ [ "OS!='win'", {"libraries+":[
-        "-L./build/Release/libexpat.a"
-      ]} ] ],
       "cflags": [ 
         "-Wdeprecated-declarations"
       ],
       "cflags_cc": [
         "-fexceptions",
-        "-funsigned-char"
+        "-funsigned-char",
+        "-DEXV_HAVE_STDINT_H=1"
       ],
-      "conditions": [ [ "OS=='linux'", {"cflags_cc+": ["-DEXV_HAVE_STDINT_H=1"]} ] ],
-      "conditions": [ [ "OS=='win'", {"cflags_cc+": ["-DEXV_HAVE_STDINT_H=0"]} ] ],
+      "conditions": [ 
+        [ "OS!='win'", {
+          "libraries+":["-L./build/Release/libexpat.a"],
+          "cflags_cc+": ["-DEXV_HAVE_STDINT_H=1"]
+        } ],
+        [ "OS=='win'", {"cflags_cc+": ["-DEXV_HAVE_STDINT_H=0"]} ]
+      ],
       "dependencies": [
         "libexpat/libexpat.gyp:expat"
       ]
@@ -106,18 +109,35 @@
         "exiv2-0.25/src/riffvideo.cpp",
         "exiv2-0.25/src/utilsvideo.cpp"
       ],
-      "cflags": ["-DEXV_HAVE_UNISTD_H=0"],
       "cflags_cc": [
         "-fexceptions",
-        "-frtti",
-        "-DEXV_HAVE_UNISTD_H=0",
-        "-DEXV_MSC_VER=2000"
+        "-frtti"
       ],
-      "conditions": [ [ "OS=='linux'", {"libraries+":["-Wl,-rpath,./build/Release/XMPSDK.a"]} ] ],
-      "conditions": [ [ "OS=='win'", {"libraries+":[
-        "-L./build/Release/XMPSDK.a",
-        "-L./build/Release/libexpat.a"
-      ]} ] ],
+      "conditions": [ 
+        [ "OS=='win'", {
+          "libraries+":[
+            "-L./build/Release/XMPSDK.a",
+            "-L./build/Release/libexpat.a"
+          ],
+          "cflags_cc+": ["-DEXV_HAVE_STDINT_H=0", "-DEXV_MSC_VER=2000"]
+        } ],
+        [ "OS=='linux'", {
+          "libraries+":["-Wl,-rpath,./build/Release/XMPSDK.a"],
+          "cflags_cc+": [
+            "-DEXV_HAVE_STDINT_H=1",
+            "-DEXV_LOCALEDIR=\"/usr/local/share/locale\""
+          ]
+        }]
+      ],
+      #"conditions": [ [ "OS=='linux'", {"cflags_cc+": [
+      #  "-DEXV_HAVE_STDINT_H=1",
+      #  "-DEXV_LOCALEDIR=\"/usr/local/share/locale\""
+      #]} ] ],
+      #"conditions": [ [ "OS=='linux'", {"libraries+":["-Wl,-rpath,./build/Release/XMPSDK.a"]} ] ],
+      #"conditions": [ [ "OS=='win'", {"libraries+":[
+      #  "-L./build/Release/XMPSDK.a",
+      #  "-L./build/Release/libexpat.a"
+      #]} ] ],
       "dependencies": [
         "XMPSDK"
       ]
