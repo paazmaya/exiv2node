@@ -11,11 +11,16 @@
       ],
       "libraries": [ "-Wl,-rpath,./build/Release/exiv2.a" ],
       'xcode_settings': {
-        'MACOSX_DEPLOYMENT_TARGET': '10.7',
+        'MACOSX_DEPLOYMENT_TARGET': '10.12',
         'GCC_ENABLE_CPP_EXCEPTIONS': 'YES',
-        'OTHER_CPLUSPLUSFLAGS': ['-stdlib=libc++','-fcxx-exceptions', '-frtti'],
+        'OTHER_CPLUSPLUSFLAGS': [
+            '-stdlib=libc++',
+            '-fcxx-exceptions',
+            '-frtti',
+            '-fexceptions'
+        ],
       },
-      "cflags": [ 
+      "cflags": [
         "-Wdeprecated-declarations"
       ],
       'cflags_cc': [

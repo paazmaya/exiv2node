@@ -24,7 +24,7 @@
         "exiv2-0.25/xmpsdk/src/WXMPIterator.cpp",
         "exiv2-0.25/xmpsdk/src/WXMPUtils.cpp"
       ],
-      "cflags": [ 
+      "cflags": [
         "-Wdeprecated-declarations"
       ],
       "cflags_cc": [
@@ -32,13 +32,25 @@
         "-funsigned-char",
         "-DEXV_HAVE_STDINT_H=1"
       ],
-      "conditions": [ 
+      "conditions": [
         [ "OS!='win'", {
           "libraries+":["-L./build/Release/libexpat.a"],
           "cflags_cc+": ["-DEXV_HAVE_STDINT_H=1"]
         } ],
         [ "OS=='win'", {"cflags_cc+": ["-DEXV_HAVE_STDINT_H=0"]} ]
       ],
+      'xcode_settings': {
+        'MACOSX_DEPLOYMENT_TARGET': '10.12',
+        'GCC_ENABLE_CPP_EXCEPTIONS': 'YES',
+        'OTHER_CPLUSPLUSFLAGS': [
+            '-stdlib=libc++',
+            '-fcxx-exceptions',
+            '-frtti',
+            '-fexceptions',
+            "-funsigned-char",
+            "-DEXV_HAVE_STDINT_H=1"
+        ],
+      },
       "dependencies": [
         "libexpat/libexpat.gyp:expat"
       ]
@@ -49,7 +61,7 @@
       "include_dirs": [
         'exiv2-0.25/xmpsdk/include/',
         'exiv2-0.25/include/exiv2',
-        'exiv2-0.25/config' 
+        'exiv2-0.25/config'
       ],
       "sources": [
         "exiv2-0.25/src/basicio.cpp",
@@ -113,7 +125,7 @@
         "-fexceptions",
         "-frtti"
       ],
-      "conditions": [ 
+      "conditions": [
         [ "OS=='win'", {
           "libraries+":[
             "-L./build/Release/XMPSDK.a",
@@ -129,15 +141,18 @@
           ]
         }]
       ],
-      #"conditions": [ [ "OS=='linux'", {"cflags_cc+": [
-      #  "-DEXV_HAVE_STDINT_H=1",
-      #  "-DEXV_LOCALEDIR=\"/usr/local/share/locale\""
-      #]} ] ],
-      #"conditions": [ [ "OS=='linux'", {"libraries+":["-Wl,-rpath,./build/Release/XMPSDK.a"]} ] ],
-      #"conditions": [ [ "OS=='win'", {"libraries+":[
-      #  "-L./build/Release/XMPSDK.a",
-      #  "-L./build/Release/libexpat.a"
-      #]} ] ],
+      'xcode_settings': {
+        'MACOSX_DEPLOYMENT_TARGET': '10.12',
+        'GCC_ENABLE_CPP_EXCEPTIONS': 'YES',
+        'OTHER_CPLUSPLUSFLAGS': [
+            '-stdlib=libc++',
+            '-fcxx-exceptions',
+            '-frtti',
+            '-fexceptions',
+            "-DEXV_HAVE_STDINT_H=1",
+            "-DEXV_LOCALEDIR=\"/usr/share/locale\""
+        ],
+      },
       "dependencies": [
         "XMPSDK"
       ]
