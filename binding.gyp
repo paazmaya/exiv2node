@@ -6,10 +6,9 @@
         'exiv2node.cc'
       ],
       'include_dirs' : [
-        "vendor/exiv2-0.25/include",
+        '<!@(pkg-config --variable=includedir exiv2)',
         "<!(node -e \"require('nan')\")"
       ],
-      "libraries": [ "-Wl,-rpath,./build/Release/exiv2.a" ],
       'xcode_settings': {
         'MACOSX_DEPLOYMENT_TARGET': '10.12',
         'GCC_ENABLE_CPP_EXCEPTIONS': 'YES',
@@ -21,14 +20,18 @@
         ],
       },
       "cflags": [
-        "-Wdeprecated-declarations"
+        "-Wdeprecated-declarations",
+        "-fexceptions",
+        "-frtti"
       ],
       'cflags_cc': [
-        '-fexceptions'
+        '-fexceptions',
+        "-frtti",
+        "-Wdeprecated-declarations"
       ],
-      "dependencies": [
-        "vendor/exiv2.gyp:XMPSDK",
-        "vendor/exiv2.gyp:libexiv2"
+      'libraries': [
+        "-Wl,-rpath,./build/Release/exiv2.a"    ,
+        '<!@(pkg-config --libs exiv2)'
       ]
     }
   ]

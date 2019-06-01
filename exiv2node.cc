@@ -403,10 +403,26 @@ NAN_METHOD(GetImagePreviews) {
 
 // - - -
 
-void InitAll(Handle<Object> target) {
-  target->Set(Nan::New<String>("getImageTags").ToLocalChecked(), Nan::New<FunctionTemplate>(GetImageTags)->GetFunction());
-  target->Set(Nan::New<String>("setImageTags").ToLocalChecked(), Nan::New<FunctionTemplate>(SetImageTags)->GetFunction());
-  target->Set(Nan::New<String>("deleteImageTags").ToLocalChecked(), Nan::New<FunctionTemplate>(DeleteImageTags)->GetFunction());
-  target->Set(Nan::New<String>("getImagePreviews").ToLocalChecked(), Nan::New<FunctionTemplate>(GetImagePreviews)->GetFunction());
+void InitAll(Local<Object> target) {
+  Nan::Set(
+    target,
+    Nan::New<String>("getImageTags").ToLocalChecked(),
+    Nan::GetFunction(Nan::New<FunctionTemplate>(GetImageTags)).ToLocalChecked()
+  );
+  Nan::Set(
+    target,
+    Nan::New<String>("setImageTags").ToLocalChecked(),
+    Nan::GetFunction(Nan::New<FunctionTemplate>(SetImageTags)).ToLocalChecked()
+  );
+  Nan::Set(
+    target,
+    Nan::New<String>("deleteImageTags").ToLocalChecked(),
+    Nan::GetFunction(Nan::New<FunctionTemplate>(DeleteImageTags)).ToLocalChecked()
+  );
+  Nan::Set(
+    target,
+    Nan::New<String>("getImagePreviews").ToLocalChecked(),
+    Nan::GetFunction(Nan::New<FunctionTemplate>(GetImagePreviews)).ToLocalChecked()
+  );
 }
 NODE_MODULE(exiv2, InitAll)
