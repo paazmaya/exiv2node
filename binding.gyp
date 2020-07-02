@@ -1,4 +1,7 @@
 {
+  'variables': {
+    'EXIV2_LIB': '<!(pkg-config --variable=libdir exiv2)'
+  },
   'targets': [
     {
       'target_name': 'exiv2',
@@ -29,10 +32,19 @@
         "-frtti",
         "-Wdeprecated-declarations"
       ],
-      'libraries': [
-        "-Wl,-rpath,./build/Release/exiv2.a"    ,
-        '<!@(pkg-config --libs exiv2)'
-      ]
+      'conditions': [[
+        'OS=="win"',
+		{
+          'libraries': [
+            '<(EXIV2_LIB)/exiv2.lib'
+          ],
+        },
+        {
+          'libraries': [
+            '<!@(pkg-config --libs exiv2)'
+          ]
+        }
+      ]]
     }
   ]
 }
