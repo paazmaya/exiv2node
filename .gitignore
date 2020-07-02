@@ -12,3 +12,6 @@ Vagrantfile
 *.lo
 *.a
 *.la
+.vs
+yarn-error.log
+yarn.lock
