@@ -16,16 +16,17 @@
     "nan": "~2.14.0"
   },
   "devDependencies": {
-    "should": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "should": "*"
   },
   "optionalDependencies": {},
   "engines": {
-    "node" : ">=8.0.0"
+    "node": ">=8.0.0"
   },
   "main": "exiv2",
   "scripts": {
     "test": "mocha",
+    "clean": "node-gyp clean",
     "build": "node-gyp configure build"
   },
   "gypfile": true,
