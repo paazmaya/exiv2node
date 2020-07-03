@@ -104,7 +104,7 @@ class GetTagsWorker : public Exiv2Worker {
     }
 
     // Pass the argv array object to our callback function.
-    callback->Call(2, argv);
+    Nan::Call(callback->GetFunction(), Nan::GetCurrentContext()->Global(), 2, argv);
   };
 };
 
@@ -180,7 +180,7 @@ class SetTagsWorker : public Exiv2Worker {
     }
 
     // Pass the argv array object to our callback function.
-    callback->Call(1, argv);
+    Nan::Call(callback->GetFunction(), Nan::GetCurrentContext()->Global(), 1, argv);
   };
 };
 
@@ -274,7 +274,7 @@ class DeleteTagsWorker : public Exiv2Worker {
     }
 
     // Pass the argv array object to our callback function.
-    callback->Call(1, argv);
+    Nan::Call(callback->GetFunction(), Nan::GetCurrentContext()->Global(), 1, argv);
   };
 };
 
@@ -355,7 +355,7 @@ class GetPreviewsWorker : public Exiv2Worker {
     }
 
     // Pass the argv array object to our callback function.
-    callback->Call(2, argv);
+    Nan::Call(callback->GetFunction(), Nan::GetCurrentContext()->Global(), 2, argv);
   };
 
  protected:
